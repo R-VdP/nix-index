@@ -35,7 +35,7 @@ The program '$cmd' is currently not installed. It is provided by
 several packages. You can run it once with:
 EOF
 
-    while read attr; do
+    while read -r attr; do
       echo >&2 "  nix shell $toplevel#$attr -c $cmd ..."
     done <<<"$attrs"
     ;;
@@ -48,6 +48,6 @@ EOF
 # we just pass it to the bash handler above
 # apparently they work identically
 command_not_found_handler() {
-  command_not_found_handle $@
+  command_not_found_handle "$@"
   return $?
 }
